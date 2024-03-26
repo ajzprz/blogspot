@@ -42,7 +42,7 @@ pipeline {
                 bat 'git diff --exit-code || git add . && git commit -m "Temporary commit"'
 
                 // Delete gh-pages branch if it exists
-                bat 'git branch -D gh-pages || true'
+                // bat 'git branch -D gh-pages || true'
 
                 // Create gh-pages branch
                 bat 'git checkout -b gh-pages || git checkout gh-pages'
