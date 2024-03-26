@@ -31,10 +31,10 @@ pipeline {
                 bat 'echo node_modules/ >> .gitignore'
 
                 // Delete gh-pages branch if it exists
-                bat 'git branch -D gh-pages || true'
+                // bat 'git branch -D gh-pages || true'
 
                 // Create gh-pages branch
-                bat 'git checkout -b gh-pages'
+                bat 'git checkout -b gh-pages || git checkout gh-pages  '
 
                 // Clear contents of gh-pages branch
                 bat 'git rm -rf .'
