@@ -28,7 +28,7 @@ pipeline {
                 }
 
                 // Copy static files to a temporary directory
-                bat 'xcopy /s out gh-pages-temp'
+                bat 'xcopy /s /Y out gh-pages-temp' // Add /Y flag to automatically overwrite files
 
                 // Exclude node_modules from being added to the repository
                 bat 'echo node_modules/ >> .gitignore'
