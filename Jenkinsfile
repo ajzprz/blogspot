@@ -30,6 +30,10 @@ pipeline {
                 // Exclude node_modules from being added to the repository
                 bat 'echo node_modules/ >> .gitignore'
 
+                  // Configure Git user email and name
+                bat 'git config user.email "ajz.prz@gmail.com"'
+                bat 'git config user.name "ajaya"'
+
                 // Delete gh-pages branch if it exists
                 // bat 'git branch -D gh-pages || true'
 
