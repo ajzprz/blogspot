@@ -37,8 +37,8 @@ pipeline {
                 // Debug statement to check the content of the gh-pages-temp directory
                 bat 'dir gh-pages-temp'
 
-                // Delay to wait for Git operations to complete
-                bat 'timeout /t 10'
+                // Introduce a delay to wait for Git operations to complete
+                bat 'ping 127.0.0.1 -n 11 > nul'
 
                 // Copy static files to the root directory
                 bat 'xcopy /s /E /Y gh-pages-temp .'
