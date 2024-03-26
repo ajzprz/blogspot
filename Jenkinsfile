@@ -29,7 +29,7 @@ pipeline {
                 }
 
                 // Copy static files to a temporary directory
-                bat 'xcopy /s /Y out gh-pages-temp'
+                bat 'xcopy /s /Y out gh-pages-temp' // Add /Y flag to automatically overwrite files
 
                 // Exclude node_modules from being added to the repository
                 bat 'echo node_modules/ >> .gitignore'
@@ -38,23 +38,20 @@ pipeline {
                 bat 'git config user.email "ajz.prz@gmail.com"'
                 bat 'git config user.name "Ajaya Prajapati"'
 
-                // Check for uncommitted changes
-                bat 'git diff --exit-code || git add . && git commit -m "Temporary commit"'
-
-                // Delete gh-pages branch if it exists
-                bat 'git branch -D gh-pages || true'
+                // Check if there are any files to remove before executing git rm -rf .
+                bat 'dir /b /a-d | findstr . > nul && git rm -rf .'
 
                 // Create gh-pages branch
-                bat 'git checkout -b gh-pages'
+                bat 'git checkout -b gh-pages || git checkout gh-pages '
 
-                // Clear contents of gh-pages branch
-                bat 'git rm -rf .'
-
-                // Commit empty state
-                bat 'git commit -m "Initial empty commit for GitHub Pages"'
+                // Commit empty state if needed
+                bat 'git diff-index --quiet HEAD || git commit -m "Initial empty commit for GitHub Pages"'
 
                 // Copy static files to the root directory
-                bat 'xcopy /s /E /Y gh-pages-temp .'
+                bat 'xcopy /s gh-pages-temp .'
+
+                // Exclude node_modules from being added to the repository
+                bat 'echo node_modules/ >> .gitignore'
 
                 // Add, commit, and push to GitHub Pages branch
                 bat 'git add .'
