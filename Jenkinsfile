@@ -31,9 +31,9 @@ pipeline {
                 // Copy static files to a temporary directory
                 bat 'xcopy /s /Y out gh-pages-temp' // Add /Y flag to automatically overwrite files
 
-                // Configure Git user email and name
-                bat 'git config user.email "ajz.prz@gmail.com"'
-                bat 'git config user.name "Ajaya Prajapati"'
+                // // Configure Git user email and name
+                // bat 'git config user.email "ajz.prz@gmail.com"'
+                // bat 'git config user.name "Ajaya Prajapati"'
 
                 // Check if there are any files to remove before executing git rm -rf .
                 bat 'dir /b /a-d | findstr . > nul && git rm -rf .'
