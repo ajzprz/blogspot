@@ -7,7 +7,11 @@ pipeline {
     stages {
         stage('Cloning Git') {
             steps {
-                bat 'git clone https://github.com/ajzprz/blogspot.git -b main'
+                script {
+                    // Delete the existing directory if it exists
+                    bat 'rmdir /s /q blogspot'
+                }
+                git([url: 'https://github.com/ajzprz/blogspot.git', branch: 'main'])
             }
         }
         stage('Building Next.js project') {
@@ -30,15 +34,15 @@ pipeline {
                 // Exclude node_modules from being added to the repository
                 bat 'echo node_modules/ >> .gitignore'
 
-                  // Configure Git user email and name
-                bat 'git config user.email "ajz.prz@gmail.com"'
-                bat 'git config user.name "ajaya"'
+                // Configure Git user email and name
+                bat 'git config user.email "you@example.com"'
+                bat 'git config user.name "Your Name"'
 
                 // Delete gh-pages branch if it exists
-                // bat 'git branch -D gh-pages || true'
+                bat 'git branch -D gh-pages || true'
 
                 // Create gh-pages branch
-                bat 'git checkout -b gh-pages || git checkout gh-pages  '
+                bat 'git checkout -b gh-pages'
 
                 // Clear contents of gh-pages branch
                 bat 'git rm -rf .'
