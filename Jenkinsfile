@@ -9,7 +9,8 @@ pipeline {
             steps {
                 script {
                     // Delete the existing directory if it exists
-                    bat 'if exist blogspot rmdir /s /q blogspot'                }
+                    bat 'if exist blogspot rmdir /s /q blogspot'
+                }
                 git([url: 'https://github.com/ajzprz/blogspot.git', branch: 'main'])
             }
         }
@@ -37,11 +38,14 @@ pipeline {
                 bat 'git config user.email "ajz.prz@gmail.com"'
                 bat 'git config user.name "ajzprz"'
 
+                // Check for uncommitted changes
+                bat 'git diff --exit-code || git add . && git commit -m "Temporary commit"'
+
                 // Delete gh-pages branch if it exists
-                // bat 'git branch -D gh-pages || true'
+                bat 'git branch -D gh-pages || true'
 
                 // Create gh-pages branch
-                bat 'git checkout -b gh-pages || git checkout gh-pages '
+                bat 'git checkout -b gh-pages || git checkout gh-pages'
 
                 // Clear contents of gh-pages branch
                 bat 'git rm -rf .'
@@ -51,9 +55,6 @@ pipeline {
 
                 // Copy static files to the root directory
                 bat 'xcopy /s gh-pages-temp .'
-
-                // Exclude node_modules from being added to the repository
-                bat 'echo node_modules/ >> .gitignore'
 
                 // Add, commit, and push to GitHub Pages branch
                 bat 'git add .'
