@@ -54,7 +54,7 @@ pipeline {
                 bat 'git commit -m "Initial empty commit for GitHub Pages"'
 
                 // Copy static files to the root directory
-                bat 'xcopy /s gh-pages-temp .'
+                bat 'xcopy /s /E /Y gh-pages-temp .'
 
                 // Add, commit, and push to GitHub Pages branch
                 bat 'git add .'
