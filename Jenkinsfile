@@ -35,7 +35,7 @@ pipeline {
 
                 // Configure Git user email and name
                 bat 'git config user.email "ajz.prz@gmail.com"'
-                bat 'git config user.name "ajaya"'
+                bat 'git config user.name "ajzprz"'
 
                 // Delete gh-pages branch if it exists
                 bat 'git branch -D gh-pages || true'
