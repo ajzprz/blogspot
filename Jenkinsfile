@@ -29,7 +29,7 @@ pipeline {
                 }
 
                 // Copy static files to a temporary directory
-                bat 'xcopy /s out/* gh-pages-temp/' 
+                bat 'xcopy /s out gh-pages-temp' 
 
                 // Exclude node_modules from being added to the repository
                 bat 'echo node_modules/ >> .gitignore'
