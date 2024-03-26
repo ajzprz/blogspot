@@ -10,8 +10,6 @@ pipeline {
                 script {
                     // Delete the existing directory if it exists
                     bat 'rmdir /s /q blogspot'
-                    bat 'rmdir /s /q gh-pages-temp'
-
                 }
                 git([url: 'https://github.com/ajzprz/blogspot.git', branch: 'main'])
             }
@@ -26,7 +24,7 @@ pipeline {
             steps {
                 script {
                     // Check if gh-pages-temp directory already exists
-                    bat 'mkdir gh-pages-temp'
+                    bat 'if not exist gh-pages-temp mkdir gh-pages-temp'
                     bat 'icacls gh-pages-temp /grant:r everyone:(OI)(CI)F' // Grant full access to everyone
                 }
 
@@ -37,8 +35,8 @@ pipeline {
                 bat 'echo node_modules/ >> .gitignore'
 
                 // Configure Git user email and name
-                bat 'git config user.email "you@example.com"'
-                bat 'git config user.name "Your Name"'
+                bat 'git config user.email "ajz.prz@gmail.com"'
+                bat 'git config user.name "ajaya"'
 
                 // Delete gh-pages branch if it exists
                 bat 'git branch -D gh-pages || true'
