@@ -10,6 +10,8 @@ pipeline {
                 script {
                     // Delete the existing directory if it exists
                     bat 'rmdir /s /q blogspot'
+                    bat 'rmdir /s /q gh-pages-temp'
+
                 }
                 git([url: 'https://github.com/ajzprz/blogspot.git', branch: 'main'])
             }
