@@ -36,7 +36,7 @@ pipeline {
 
                 // Configure Git user email and name
                 bat 'git config user.email "ajz.prz@gmail.com"'
-                bat 'git config user.name "ajzprz"'
+                bat 'git config user.name "Ajaya Prajapati"'
 
                 // Check for uncommitted changes
                 bat 'git diff --exit-code || git add . && git commit -m "Temporary commit"'
