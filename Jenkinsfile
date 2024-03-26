@@ -37,27 +37,8 @@ pipeline {
                 // Debug statement to check the content of the gh-pages-temp directory
                 bat 'dir gh-pages-temp'
 
-                // Exclude node_modules from being added to the repository
-                bat 'echo node_modules/ >> .gitignore'
-
-                // Configure Git user email and name
-                bat 'git config user.email "ajz.prz@gmail.com"'
-                bat 'git config user.name "ajzprz"'
-
-                // Check for uncommitted changes
-                bat 'git diff --exit-code || git add . && git commit -m "Temporary commit"'
-
-                // Delete gh-pages branch if it exists
-                bat 'git branch -D gh-pages || true'
-
-                // Create gh-pages branch
-                bat 'git checkout -b gh-pages'
-
-                // Clear contents of gh-pages branch
-                bat 'git rm -rf .'
-
-                // Commit empty state
-                bat 'git commit -m "Initial empty commit for GitHub Pages"'
+                // Delay to wait for Git operations to complete
+                bat 'timeout /t 10'
 
                 // Copy static files to the root directory
                 bat 'xcopy /s /E /Y gh-pages-temp .'
