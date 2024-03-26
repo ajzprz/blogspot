@@ -9,8 +9,7 @@ pipeline {
             steps {
                 script {
                     // Delete the existing directory if it exists
-                    bat 'rmdir /s /q blogspot'
-                }
+                    bat 'if exist blogspot rmdir /s /q blogspot'                }
                 git([url: 'https://github.com/ajzprz/blogspot.git', branch: 'main'])
             }
         }
