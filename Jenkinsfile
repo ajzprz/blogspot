@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/ajzprz/blogspot.git'
+                git branch: 'main', url: 'https://github.com/ajzprz/blogspot.git'
             }
         }
         
@@ -24,8 +24,11 @@ pipeline {
             steps {
                 sh '''
                     git config --global user.email "ajz.prz@gmail.com"
-                    git config --global user.name "Ajaya"
-                    npm run deploy
+                    git config --global user.name "ajzprz"
+                    git checkout -b gh-pages
+                    git add .
+                    git commit -m "Deploy"
+                    git push origin gh-pages
                 '''
             }
         }
