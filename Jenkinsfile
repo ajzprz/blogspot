@@ -33,7 +33,7 @@ pipeline {
 
                 // Configure Git user email and name
                 bat 'git config user.email "ajz.prz@gmail.com"'
-                bat 'git config user.name "ajzprz"'
+                bat 'git config user.name "Ajaya Prajapati"'
 
                 // Check if there are any files to remove before executing git rm -rf .
                 bat 'dir /b /a-d out | findstr . > nul && git rm -rf .'
