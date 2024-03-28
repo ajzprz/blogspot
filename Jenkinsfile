@@ -32,8 +32,8 @@ pipeline {
                 bat 'xcopy /s /Y .\\out\\* gh-pages-temp' // Adjusted file copy command
 
                 // Configure Git user email and name
-                bat 'git config user.email "youremail@example.com"'
-                bat 'git config user.name "Your Name"'
+                bat 'git config user.email "ajz.prz@gmail.com"'
+                bat 'git config user.name "ajzprz"'
 
                 // Check if there are any files to remove before executing git rm -rf .
                 bat 'dir /b /a-d out | findstr . > nul && git rm -rf .'
